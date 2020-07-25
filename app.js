@@ -93,7 +93,7 @@ function internDetails() {
 }
 
 function createStaffTeam() {
-  let finalTeamHtml = renderTeam(employees);
+  let finalTeamHtml = render(employees);
   console.log(employees);
   fs.writeFileSync(path.join(__dirname, "/output/team.html"), finalTeamHtml);
 }
