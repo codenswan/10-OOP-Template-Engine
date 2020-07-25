@@ -20,13 +20,13 @@ function addStaff() {
     .prompt([
       {
         type: "list",
-        name: "staff",
+        name: "role",
         message: "What role do you want to create?",
         choices: ["Manager", "Engineer", "Intern", "That's the team."],
       },
     ])
     .then((response) => {
-      switch (response.staff) {
+      switch (response.role) {
         case "Manager":
           managerDetails();
           break;
@@ -38,6 +38,7 @@ function addStaff() {
           break;
         case "That's all the team.":
           createStaffTeam();
+          break;
       }
     });
 }
@@ -61,12 +62,12 @@ function managerDetails() {
 function engineerDetails() {
   inquirer
     .prompt(questions.engineer)
-    .then(({ engineerName, engineerEmail, engineerID, engineerOffice }) => {
+    .then(({ engineerName, engineerEmail, engineerID, engineerGithub }) => {
       const engineer = new Engineer(
         engineerName,
         engineerID,
         engineerEmail,
-        engineerOffice
+        engineerGithub
       );
       employees.push(engineer);
       console.log(employees);
@@ -91,8 +92,9 @@ function internDetails() {
 }
 
 function createStaffTeam() {
-  console.log(employees);
-  fs.writeFile(outputPath, render(employees), "UTF-8");
+  console.log("test");
+  let html = render(employees)
+  fs.writeFileSync(outputPath, html, "UTF-8");
 }
 
 addStaff();
