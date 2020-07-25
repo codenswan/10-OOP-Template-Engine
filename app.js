@@ -5,31 +5,97 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
+const render = require("./lib/htmlRenderer");
+const questions = require("./lib/utils/questions");
+
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
-
+const employees = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+function addStaff() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "staff",
+        message: "What role do you want to create?",
+        choices: ["Manager", "Engineer", "Intern", "That's the team."],
+      },
+    ])
+    .then((response) => {
+      switch (response.staff) {
+        case "Manager":
+          managerDetails();
+          console.log(employees);
+          break;
+        case "Engineer":
+          engineerDetails();
+          console.log(employees);
+          break;
+        case "Intern":
+          internDetails();
+          break;
+        case "That's all the team.":
+          console.log(employees);
+          createStaffTeam();
+          break;
+      }
+    });
+}
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
+function managerDetails() {
+  inquirer
+    .prompt(questions.manager)
+    .then(({ managerName, managerEmail, managerID, managerOffice }) => {
+      const manager = new Manager(
+        managerName,
+        managerID,
+        managerEmail,
+        managerOffice
+      );
+      employees.push(manager);
+      console.log(employees);
+      addStaff();
+    });
+}
 
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
+function engineerDetails() {
+  inquirer
+    .prompt(questions.engineer)
+    .then(({ engineerName, engineerEmail, engineerID, engineerOffice }) => {
+      const engineer = new Engineer(
+        engineerName,
+        engineerID,
+        engineerEmail,
+        engineerOffice
+      );
+      employees.push(engineer);
+      addStaff();
+    });
+}
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+function internDetails() {
+  inquirer
+    .prompt(questions.intern)
+    .then(({ internName, internEmail, internID, internSchool }) => {
+      const intern = new Intern(
+        internName,
+        internID,
+        internEmail,
+        internSchool
+      );
+      employees.push(intern);
+      addStaff();
+    });
+}
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+function createStaffTeam() {
+  let finalTeamHtml = renderTeam(employees);
+  console.log(employees);
+  fs.writeFileSync(path.join(__dirname, "/output/team.html"), finalTeamHtml);
+}
+
+addStaff();
