@@ -29,19 +29,15 @@ function addStaff() {
       switch (response.staff) {
         case "Manager":
           managerDetails();
-          console.log(employees);
           break;
         case "Engineer":
           engineerDetails();
-          console.log(employees);
           break;
         case "Intern":
           internDetails();
           break;
         case "That's all the team.":
-          console.log(employees);
           createStaffTeam();
-          break;
       }
     });
 }
@@ -73,6 +69,7 @@ function engineerDetails() {
         engineerOffice
       );
       employees.push(engineer);
+      console.log(employees);
       addStaff();
     });
 }
@@ -88,14 +85,14 @@ function internDetails() {
         internSchool
       );
       employees.push(intern);
+      console.log(employees);
       addStaff();
     });
 }
 
 function createStaffTeam() {
-  let finalTeamHtml = render(employees);
   console.log(employees);
-  fs.writeFileSync(path.join(__dirname, "/output/team.html"), finalTeamHtml);
+  fs.writeFile(outputPath, render(employees), "UTF-8");
 }
 
 addStaff();
