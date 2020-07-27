@@ -28,5 +28,4 @@ This application is licensed under MIT.
 
 ---
 ## Questions:
-Developed by codenswan. 
 If you have any further questions please contact me at [rodger.swan@gmail.com](mailto:rodger.swan@gmail.com).
