@@ -16,13 +16,13 @@ const employees = [];
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 function addStaff() {
-  inquirer
+  return inquirer
     .prompt([
       {
         type: "list",
         name: "role",
         message: "What role do you want to create?",
-        choices: ["Manager", "Engineer", "Intern", "That's the team."],
+        choices: ["Manager", "Engineer", "Intern", "That's all the team."],
       },
     ])
     .then((response) => {
@@ -37,9 +37,10 @@ function addStaff() {
           internDetails();
           break;
         case "That's all the team.":
-          createStaffTeam();
+          fs.writeFileSync(outputPath, render(employees), "UTF-8");
           break;
       }
+      return employees;
     });
 }
 
@@ -54,7 +55,6 @@ function managerDetails() {
         managerOffice
       );
       employees.push(manager);
-      console.log(employees);
       addStaff();
     });
 }
@@ -70,7 +70,6 @@ function engineerDetails() {
         engineerGithub
       );
       employees.push(engineer);
-      console.log(employees);
       addStaff();
     });
 }
@@ -86,15 +85,8 @@ function internDetails() {
         internSchool
       );
       employees.push(intern);
-      console.log(employees);
       addStaff();
     });
-}
-
-function createStaffTeam() {
-  console.log("test");
-  let html = render(employees)
-  fs.writeFileSync(outputPath, html, "UTF-8");
 }
 
 addStaff();
