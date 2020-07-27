@@ -45,7 +45,7 @@ function addStaff() {
 }
 
 function managerDetails() {
-  inquirer
+  return inquirer
     .prompt(questions.manager)
     .then(({ managerName, managerEmail, managerID, managerOffice }) => {
       const manager = new Manager(
@@ -56,11 +56,12 @@ function managerDetails() {
       );
       employees.push(manager);
       addStaff();
+      return employees;
     });
 }
 
 function engineerDetails() {
-  inquirer
+  return inquirer
     .prompt(questions.engineer)
     .then(({ engineerName, engineerEmail, engineerID, engineerGithub }) => {
       const engineer = new Engineer(
@@ -71,11 +72,12 @@ function engineerDetails() {
       );
       employees.push(engineer);
       addStaff();
+      return employees;
     });
 }
 
 function internDetails() {
-  inquirer
+  return inquirer
     .prompt(questions.intern)
     .then(({ internName, internEmail, internID, internSchool }) => {
       const intern = new Intern(
@@ -86,6 +88,7 @@ function internDetails() {
       );
       employees.push(intern);
       addStaff();
+      return employees;
     });
 }
 
