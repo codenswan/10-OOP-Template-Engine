@@ -19,7 +19,7 @@ This is a command-line application that prompts user for information about their
     
     
 ## Usage:
-![](https://youtu.be/8RX7vfkEnW0)
+![]("https://youtu.be/8RX7vfkEnW0")
 
 
 ## License:
