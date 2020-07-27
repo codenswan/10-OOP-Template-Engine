@@ -8,15 +8,14 @@ This project was developed by [codenswan](https://github.com/codenswan).
 * [Install Instructions](#Installation)
 * [Usage](#Usage)
 * [License](#License)
-* [Contribution](#Contribution)
-* [Tests](#Tests)
 * [Questions](#Questions)
 
 ## Description:
 This is a command-line application that prompts user for information about their software engineering team.
 
-## Installation:
-    npm run test
+## Installation:;
+To install dependencies run the following in the command-line
+    npm install inquirer
     
 ## Usage:
 Here is the link to the [video demonstration.](https://youtu.be/8RX7vfkEnW0)
@@ -25,11 +24,6 @@ Here is the link to the [video demonstration.](https://youtu.be/8RX7vfkEnW0)
 ## License:
 This application is licensed under MIT.
 
-## Contribution:
-
-
-## Tests:
-There are no tests for this app.
 ---
 ## Questions:
 Developed by codenswan. 
