@@ -13,9 +13,11 @@ This project was developed by [codenswan](https://github.com/codenswan).
 ## Description:
 This is a command-line application that prompts user for information about their software engineering team.
 
-## Installation:;
-To install dependencies run the following in the command-line
-    npm install inquirer
+## Installation:
+To install dependencies run the following in the command-line:
+```
+npm install inquirer
+```
     
 ## Usage:
 Here is the link to the [video demonstration.](https://youtu.be/8RX7vfkEnW0)
