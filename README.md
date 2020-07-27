@@ -16,7 +16,7 @@ This project was developed by [codenswan](https://github.com/codenswan).
 This is a command-line application that prompts user for information about their software engineering team.
 
 ## Installation:
-    
+    npm run test
     
 ## Usage:
 Here is the link to the [video demonstration.](https://youtu.be/8RX7vfkEnW0)
@@ -29,7 +29,7 @@ This application is licensed under MIT.
 
 
 ## Tests:
-    npm run test
+There are no tests for this app.
 ---
 ## Questions:
 Developed by codenswan. 
